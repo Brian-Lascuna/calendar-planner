@@ -1,4 +1,7 @@
 var saveBtn = $('.saveBtn');
+var eventModal = $('#eventSaved');
+
+eventModal.modal({ show: false });
 
 
 // Wrap all code that interacts with the DOM in a call to jQuery to ensure that
@@ -17,6 +20,7 @@ $( document ).ready(function () {
 
     localStorage.setItem(timeBlock.attr('id'), timeBlockText.val());
     console.log("Saved to local storage");
+    eventModal.modal('show');
   })
   //
   // TODO: Add code to apply the past, present, or future class to each time
@@ -39,6 +43,10 @@ $( document ).ready(function () {
       else {
         currentBlock.addClass('future');
       }
+
+      var storageTraversal = "hour-" + i;
+      var savedData = localStorage.getItem(storageTraversal);
+      currentBlock.children('textarea').val(savedData);
     }
   //
   // TODO: Add code to get any user input that was saved in localStorage and set
