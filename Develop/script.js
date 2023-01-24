@@ -1,5 +1,6 @@
 var saveBtn = $('.saveBtn');
 var eventModal = $('#eventSaved');
+var currentDate = $('#currentDay');
 
 eventModal.modal({ show: false });
 
@@ -47,6 +48,21 @@ $( document ).ready(function () {
       var storageTraversal = "hour-" + i;
       var savedData = localStorage.getItem(storageTraversal);
       currentBlock.children('textarea').val(savedData);
+    }
+
+    var currentDay = dayjs().format('dddd, MMMM D');
+    var currentDayInt = dayjs().format('D');
+    if (parseInt(currentDayInt) == 1) {
+      currentDate.text(currentDay + "st");
+    }
+    else if (parseInt(currentDayInt) == 2) {
+      currentDate.text(currentDay + "nd");
+    }
+    else if (parseInt(currentDayInt) == 3) {
+      currentDate.text(currentDay + "rd");
+    }
+    else {
+      currentDate.text(currentDay + "th");
     }
   //
   // TODO: Add code to get any user input that was saved in localStorage and set
